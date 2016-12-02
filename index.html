@@ -1,0 +1,84 @@
+<doctype html>
+<html>
+  <head>
+    <title>Rx + Vue.js</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="site.css"></link>
+  </head>
+  <body>
+
+    <strong>Current Tags:</strong>
+    <pre id="current-tags"> </pre>
+    <strong>Ticker API Tags:</strong>
+    <pre id="ticker-api-tags"> </pre>
+
+    <div class="wrapper">
+      <div class="version">
+        <h3>Rx + Vue</h3>
+       
+        <p>Focus Add Tag and try typing 'A'</p>
+
+        <div id="rx-vue"  class="elm-tag-auto">
+          <ul>
+            <li v-for="tag in selected" class="elm-tag-auto__selected-tag">
+              <span v-on:click="removeTag(tag)" class="elm-tag-auto__remove-tag">x</span>{{tag}}</li>
+
+            <li class="elm-tag-auto__search-input">
+              <input v-model="query"
+                     v-on:keyup="onChange($event)"
+                     v-on:keydown.tab.prevent="tab($event)"
+                     v-on:keydown.delete="deleteTag()"
+                     v-bind:ref="'queryInput'"
+                     placeholder="Add Tag" 
+                     class="elm-tag-auto-input autocomplete-input" 
+                     id="rx-vue-input" type="search">
+            </li>
+          </ul>
+          <div class="autocomplete-menu tag-auto" v-if="sections.length > 0">
+            <ul class="autocomplete-section-list">
+              <li v-for="section in sections" v-if="section.tags.length > 0" 
+                  class="autocomplete-section-item search-box-results-tags">
+                <div class="autocomplete-section-item search-box-results-tags">
+                  <div class="autocomplete-section-header">
+                    <strong class="autocomplete-section-text">{{ section.header }}:</strong>
+                  </div>
+                  <ul v-for="tag in section.tags" class="autocomplete-list-with-sections">
+                    <li class="autocomplete-item" 
+                        v-on:mouseover="mouseOverTag(tag)"
+                        v-on:mouseout="mouseOutTag(tag)"
+                        v-on:click="clickTag(tag)"
+                        v-bind:class="{'key-selected': tag.selected}">{{ tag.label }}</li>
+                  </ul>
+                </div>
+              <li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs-dom/7.0.3/rx.dom.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="rxtagauto.js"></script>
+    <script>
+      var tags = ["AMZN", "AOL", "MSFT"];
+      $('#current-tags').html(JSON.stringify(tags))
+
+      $.get('/ticker_search').then(function(data) {
+        $('#ticker-api-tags').html(data)
+      })
+
+      $(document).ready(function() {
+        rxTagAuto()
+      }) // document.ready
+
+        
+      
+    </script>
+  </body>
+</html>

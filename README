@@ -1,0 +1,7 @@
+
+gem install sinatra
+
+ruby web.rb
+
+open http://localhost:4567/index.html
+

@@ -1,0 +1,91 @@
+
+body {
+  color: #4e444a;
+  font-family: "Ruda", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-size: 1em;
+  line-height: 1.5; }
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.version {
+  flex-basis: 49%;
+  border: 2px dotted #333;
+  padding: 8px 10px 30px;
+  margin: 10px 0 20px;
+  min-height: 300px;
+}
+
+/* ELM TAG AUTOCOMPLETE TagAuto.elm */
+
+/* new styles for elm autocomplete */
+.autocomplete-menu {
+  background-color: #fff;
+  border: 1px solid #999;
+  box-shadow: -3px 3px 10px rgba(153, 153, 153, 0.15);
+  line-height: 1.5em;
+  padding: 10px; }
+
+.autocomplete-item.mouse-selected, .autocomplete-item.key-selected {
+  color: #559b1c;
+  text-decoration: underline; }
+
+.autocomplete-section-header {
+  color: #1a2c5a;
+  margin-bottom: 5px; }
+
+.autocomplete-section-item {
+  cursor: pointer;
+  display: inline-block;
+  width: 33%;
+  vertical-align: top; }
+  .autocomplete-section-item div {
+    width: 100%; }
+
+.autocomplete-tip {
+  color: #999; }
+
+.elm-tag-auto .autocomplete-section-list {
+  max-height: 350px; }
+.elm-tag-auto li.autocomplete-section-item {
+  width: 50%; }
+.elm-tag-auto li.autocomplete-section-item:first-child .autocomplete-item:nth-child(n+6) {
+  display: none; }
+.elm-tag-auto li.autocomplete-section-item:first-child {
+  padding-bottom: 10px; }
+.elm-tag-auto li.autocomplete-section-item:last-child .autocomplete-item:nth-child(n+8) {
+  display: none; }
+.elm-tag-auto div.autocomplete-section-item {
+  width: 100%; }
+
+input.elm-tag-auto-input[type=search] {
+  width: auto;
+  border: none;
+  box-shadow: none;
+  padding-left: 0;
+  padding-top: 3px; }
+
+.elm-tag-auto__selected-tag {
+  background-color: #e4e4e4;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: default;
+  float: left;
+  margin-right: 5px;
+  /* margin-top: 5px; */
+  padding: 0 5px; }
+
+.elm-tag-auto__remove-tag {
+  color: #999;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 2px; }
+
+
